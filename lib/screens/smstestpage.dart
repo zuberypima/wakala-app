@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:telephony/telephony.dart';
+import 'package:wakala/utilit/filterincomingsms.dart';
 
 class SmsTestPage extends StatelessWidget {
   SmsTestPage({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class SmsTestPage extends StatelessWidget {
             telephony.listenIncomingSms(
                 onNewMessage: (SmsMessage messagge) {
                   if (messagge.address == "+255685387767") {
+                    FillterIncomingSMS().takeName(messagge.body.toString());
                     showAlertDialog(context, messagge.body.toString());
                   } else {
                     print("Sender is unknwon");
