@@ -1,11 +1,13 @@
 // THIS IS HOME SCREEN FOR DISPLAY HOME PAGE CONTENT
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:wakala/model/smsdata.dart';
 import 'package:wakala/widgets/boxcontainer.dart';
 import 'package:wakala/widgets/boxtwo.dart';
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({ Key? key }) : super(key: key);
-
+   HomeScreen({ Key? key }) : super(key: key);
+Stream collectionStream = FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(body:  Column(
@@ -49,15 +51,7 @@ class HomeScreen extends StatelessWidget {
           Container(
             color: Colors.white,
             height: MediaQuery.of(context).size.height *0.49,
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: BoxTwo(),
-                );
-              },
-            ),
+            child:SmsInformation(),
           ),
         ],
       ),);

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BoxTwo extends StatelessWidget {
-  const BoxTwo({Key? key}) : super(key: key);
+final String phone;
+final String amount;
+BoxTwo({Key? key, required this.phone, required this.amount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,16 +12,16 @@ class BoxTwo extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.blueGrey, borderRadius: BorderRadius.circular(10)),
       child: ListTile(
-        title: Text("Name of the Customer", style: TextStyle(color: Colors.white,fontSize: 16),),
-        subtitle: Text("+255789765432", style: TextStyle(color: Colors.white70,fontSize: 14),),
+        title: Text("${phone}", style: TextStyle(color: Colors.white,fontSize: 16),),
+       // subtitle: Text("+255789765432", style: TextStyle(color: Colors.white70,fontSize: 14),),
         trailing: Wrap(
           children: [
-            Icon(
-              Icons.arrow_back_sharp,
-              color: Colors.white,
-            ),
+            // Icon(
+            //   Icons.arrow_back_sharp,
+            //   color: Colors.white,
+            // ),
             Text(
-              "8000",
+              "${amount}",
               style: TextStyle(color: Colors.white,fontSize: 16),
             )
           ],

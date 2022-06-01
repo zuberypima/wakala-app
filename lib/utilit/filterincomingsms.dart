@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wakala/model/addsmsinfo.dart';
 
 class FillterIncomingSMS {
   String takensms = '';
   String newsms = '';
+  String? _name, _phone, _amount,_profit,_balance;
 
 //COLLECT NAME
   takeName(String recivedsms) {
@@ -10,17 +12,24 @@ class FillterIncomingSMS {
     takensms = recivedsms.replaceAll(',', '');
     Iterable<RegExpMatch> matches = exp.allMatches(recivedsms);
     for (final m in matches) {
-      //print(m[0]);
       print(m[0]);
     }
     phonenumber(takensms);
+    AddSmsInfo().receivedsms(
+      _phone!,
+      _amount!,
+      _profit!,
+      _balance!,
+    );
   }
+
 //COLLECT PHONE NUMBER
   phonenumber(String fornumber) async {
     RegExp exp = RegExp(r'[\d]{12}');
     RegExpMatch? match = exp.firstMatch(fornumber);
     takensms = fornumber.replaceAll('${match![0]}', '');
     print(match[0]);
+    _phone = match[0].toString();
 
     transId(takensms);
   }
@@ -39,8 +48,8 @@ class FillterIncomingSMS {
     RegExp exp = RegExp(r'[\d]{3,}');
     RegExpMatch? match = exp.firstMatch(foramount);
     takensms = foramount.replaceAll('${match![0]}', '');
-    print(match[0]);
-   takecammision(takensms);
+    _amount = match[0];
+    takecammision(takensms);
   }
 
 //COLLECT CAMMISION AMOUNT
@@ -48,17 +57,16 @@ class FillterIncomingSMS {
     RegExp exp = RegExp(r'[\d]{2,}');
     RegExpMatch? match = exp.firstMatch(foramount);
     takensms = foramount.replaceAll('${match![0]}', '');
-    print(match[0]);
-    
+    _profit= match[0];
+
     takebalance(takensms);
   }
 
 //COLLECT BALANCE
-   takebalance(String foramount) {
+  takebalance(String foramount) {
     RegExp exp = RegExp(r'[\d]{1,}');
     RegExpMatch? match = exp.firstMatch(foramount);
     takensms = foramount.replaceAll('${match![0]}', '');
-    print(match[0]);
-  
+    _balance= match[0];
   }
 }
