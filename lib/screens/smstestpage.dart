@@ -24,7 +24,7 @@ class SmsTestPage extends StatelessWidget {
            // AddSmsInfo().receivedsms();
             telephony.listenIncomingSms(
                 onNewMessage: (SmsMessage messagge) {
-                  if (messagge.address == "+255624115980") {
+                  if (messagge.address == "+255685387767") {
                     FillterIncomingSMS().takeName(messagge.body.toString());
                     showAlertDialog(context, messagge.body.toString());
                   } else {
