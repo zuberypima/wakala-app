@@ -1,3 +1,5 @@
+//TAARIFA ZA MIAMALA KWA UFUPI ZINAZO ONEKANA BAADA YA KUCHAKATA SMS ILIPOKELEWA
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wakala/widgets/boxtwo.dart';

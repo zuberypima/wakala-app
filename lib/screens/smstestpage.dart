@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:telephony/telephony.dart';
+import 'package:wakala/main.dart';
 import 'package:wakala/model/addsmsinfo.dart';
-import 'package:wakala/utilit/filterincomingsms.dart';
+import 'package:wakala/utilit/depositsmsfilter.dart';
 
 class SmsTestPage extends StatelessWidget {
   SmsTestPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class SmsTestPage extends StatelessWidget {
   // DatabaseReference ref = FirebaseDatabase.instance.ref();
   // CollectionReference smsCollection =
   //     FirebaseFirestore.instance.collection('students');
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +33,9 @@ class SmsTestPage extends StatelessWidget {
                     print("Sender is unknwon");
                   }
                 },
-                listenInBackground: false);
+              //  onBackgroundMessage: backgrounMessageHandler
+                listenInBackground: false
+                );
           },
           child: Text('Test SMS'),
         ),

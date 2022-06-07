@@ -1,3 +1,5 @@
+//Function ya kuchakata sms ya inayo ingia baada ya mteja kuweka pesa
+
 import 'package:flutter/material.dart';
 import 'package:wakala/model/addsmsinfo.dart';
 
