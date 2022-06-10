@@ -21,27 +21,33 @@ class SmsTestPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
+              FillterIncomingSMS().takeName(ujumbekuweka);
             //takeSms();
             //function to recive sms
            // AddSmsInfo().receivedsms();
-            telephony.listenIncomingSms(
-                onNewMessage: (SmsMessage messagge) {
-                  if (messagge.address == "+255685387767") {
-                    FillterIncomingSMS().takeName(messagge.body.toString());
-                    showAlertDialog(context, messagge.body.toString());
-                  } else {
-                    print("Sender is unknwon");
-                  }
-                },
+         //   telephony.listenIncomingSms(
+          //      onNewMessage: (SmsMessage messagge) {
+               //   if (messagge.address == "+255685387767") {
+                 //   FillterIncomingSMS().takeName(messagge.body.toString());
+                 //   showAlertDialog(context, messagge.body.toString());
+               //   } else {
+            //    print("Sender is unknwon");
+             //     }
+           //     },
               //  onBackgroundMessage: backgrounMessageHandler
-                listenInBackground: false
-                );
+             //   listenInBackground: false
+             //   );
           },
           child: Text('Test SMS'),
         ),
       ),
     );
   }
+//sms
+
+   String ujumbekuweka ='''Zoezi la kuweka fedha kwa FEISAL KHALFAN, 255657281303 limefanikiwa. 
+  Kiasi Tsh 3,000. Mrejaa Tsh 56. Salio Jipya ni Tsh 162,081.
+   Kumbukumbu No: 44824127299. 22/05/22 22:02. ''';
 
   //Alert Dialog to display sms after recieving
   showAlertDialog(BuildContext context, String sms) {
