@@ -6,12 +6,16 @@ import 'package:wakala/widgets/boxtwo.dart';
 
 class Transactiondata{
  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
- DatabaseReference ref = FirebaseDatabase.instance.ref("users/123");
-floatamount()async{
+ DatabaseReference ref = FirebaseDatabase.instance.ref("TransactionDetails");
+floatamount(String floatvalue)async{
   await ref.set({
-  "name": "John",
-  "age": 18,
- 
+  "Float": floatvalue,
+});
+}
+
+numberoftransactions(String transnumber)async{
+  await ref.set({
+  "NumberofTrans": transnumber,
 });
 }
 withdrawtransaction(){

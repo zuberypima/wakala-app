@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wakala/model/addsmsinfo.dart';
+import 'package:wakala/model/transactiondata.dart';
 
 class FillterIncomingSMS {
   String takensms = '';
@@ -30,6 +31,7 @@ class FillterIncomingSMS {
       _date!,
       _smstype!,
     );
+    Transactiondata().floatamount(_amount!);
   }
 
 //COLLECT PHONE NUMBER
