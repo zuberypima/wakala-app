@@ -1,11 +1,12 @@
 //Page for general report
 
 import 'package:flutter/material.dart';
+import 'package:wakala/model/transactionpushdata.dart';
 import 'package:wakala/widgets/boxcontainer.dart';
 
 class GeneralReport extends StatelessWidget {
-  const GeneralReport({Key? key}) : super(key: key);
-
+   GeneralReport({Key? key}) : super(key: key);
+String _float =Transactiondata().floatamountRead();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +21,7 @@ class GeneralReport extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Boxone(Color.fromRGBO(12, 44, 92, 3), 'Camision','','Tsh:35000'),
+                Boxone(Color.fromRGBO(12, 44, 92, 3), 'Camision','',_float),
                 Boxone(Colors.cyanAccent, 'Transactions','','66'),
               ],
             ),

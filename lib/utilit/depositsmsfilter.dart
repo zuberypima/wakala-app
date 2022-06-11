@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wakala/model/addsmsinfo.dart';
-import 'package:wakala/model/transactiondata.dart';
+import 'package:wakala/model/transactionpushdata.dart';
 
 class FillterIncomingSMS {
   String takensms = '';
@@ -11,7 +11,7 @@ class FillterIncomingSMS {
 
   List<String> name = [];
 //COLLECT NAME
-  takeName(String recivedsms) {
+  takeName(String recivedsms) async{
     RegExp exp = RegExp(r'([A-Z][A-Z]{3})\w');
     takensms = recivedsms.replaceAll(',', '');
     Iterable<RegExpMatch> matches = exp.allMatches(recivedsms);
@@ -20,8 +20,8 @@ class FillterIncomingSMS {
       name.add(m[0].toString());
     }
     _names = name[0] + ' ' + name[1];
-    phonenumber(takensms);
-    AddSmsInfo().receivedsms(
+  await  phonenumber(takensms);
+   await AddSmsInfo().receivedsms(
       _names!,
       _phone!,
       _amount!,
@@ -31,7 +31,9 @@ class FillterIncomingSMS {
       _date!,
       _smstype!,
     );
-    Transactiondata().floatamount(_amount!);
+ await  Transactiondata().floatamount(_amount!);
+ await Transactiondata().camisionamount(_profit!);
+ await Transactiondata().floatamountRead();
   }
 
 //COLLECT PHONE NUMBER
