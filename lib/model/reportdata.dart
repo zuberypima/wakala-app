@@ -1,21 +1,21 @@
 // To parse this JSON data, do
 //
-//     final dataModel = dataModelFromJson(jsonString);
+//     final reportData = reportDataFromJson(jsonString);
 
 import 'dart:convert';
 
-DataModel dataModelFromJson(String str) => DataModel.fromJson(json.decode(str));
+ReportData reportDataFromJson(String str) => ReportData.fromJson(json.decode(str));
 
-String dataModelToJson(DataModel data) => json.encode(data.toJson());
+String reportDataToJson(ReportData data) => json.encode(data.toJson());
 
-class DataModel {
-    DataModel({
+class ReportData {
+    ReportData({
         required this.transactionDetails,
     });
 
     TransactionDetails transactionDetails;
 
-    factory DataModel.fromJson(Map<String, dynamic> json) => DataModel(
+    factory ReportData.fromJson(Map<String, dynamic> json) => ReportData(
         transactionDetails: TransactionDetails.fromJson(json["TransactionDetails"]),
     );
 

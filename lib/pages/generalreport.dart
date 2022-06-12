@@ -2,7 +2,11 @@
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:wakala/model/pulltransactionsdata.dart';
+import 'package:wakala/model/reportdata.dart';
+import 'package:wakala/model/reportdetails/report.dart';
 import 'package:wakala/model/transactionpushdata.dart';
+import 'package:wakala/screens/customerdetails.dart';
 import 'package:wakala/widgets/boxcontainer.dart';
 
 class GeneralReport extends StatefulWidget {
@@ -13,21 +17,21 @@ class GeneralReport extends StatefulWidget {
 }
 
 class _GeneralReportState extends State<GeneralReport> {
-   String? _float ;
-  String? _floatvalue;
+ 
+ String? float;
+  String? floatvalue;
  DatabaseReference floatref =FirebaseDatabase.instance.ref("TransactionDetails/Float");
-  floatamountRead() {
-   Stream<DatabaseEvent> floatstream = floatref.onValue;
-
-    floatstream.listen((event) {
-      _floatvalue =event.snapshot.value.toString();
-     // _float = event.snapshot.value.toString();
-   _float =_floatvalue;
-                 //    Boxone( Colors.blueGrey, 'Customers Details','',floatvalue);
-      print(_float);
-    }).onData((data) { });
-  return _float.toString();
+//  final reportData = reportDataFromJson('');
+ String? floatamountRead(  ) {
+  
+  Stream<DatabaseEvent> floatstream = floatref.onValue;
+  
+    floatstream.listen((DatabaseEvent  event) {
+      floatvalue =event.snapshot.value.toString();
+    });
+ return floatvalue;
   }
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,8 +46,8 @@ class _GeneralReportState extends State<GeneralReport> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Boxone(Color.fromRGBO(12, 44, 92, 3), 'Camision','',floatamountRead()),
-                Boxone(Colors.cyanAccent, 'Transactions','','66'),
+                Boxone(Color.fromRGBO(12, 44, 92, 3), 'Camision','',floatvalue.toString()),
+                Boxone(Colors.cyanAccent, 'Transactions','','99'),
               ],
             ),
           ),
@@ -53,11 +57,17 @@ class _GeneralReportState extends State<GeneralReport> {
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Boxone(Colors.orange, 'Report','',''),
-                Boxone( Colors.blueGrey, 'Customers Details','',''),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerDetailsPage()));
+                  },
+                  child: Boxone( Colors.blueGrey, 'Customers Details','','')),
               ],
           ),
            ),
-
+ElevatedButton(onPressed: (){
+  floatamountRead();
+}, child: Text('test'))
           ],
           
       ),
