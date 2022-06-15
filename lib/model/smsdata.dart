@@ -40,7 +40,8 @@ class _SmsInformationState extends State<SmsInformation> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => SmsDetails(
-                                  transactionid: data['phonenumber'],
+                                  transactionid: data['transactionId'],
+                                  phone: data['phonenumber'],
                                 )));
                   },
                   child: BoxTwo(

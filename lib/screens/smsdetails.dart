@@ -3,22 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:wakala/widgets/boxtwo.dart';
 
 class SmsDetails extends StatefulWidget {
+  String phone;
   String transactionid;
-  SmsDetails({Key? key,required this.transactionid}) : super(key: key);
+  SmsDetails({Key? key, required this.transactionid, required this.phone})
+      : super(key: key);
 
   @override
   State<SmsDetails> createState() => _SmsDetailsState();
 }
 
 class _SmsDetailsState extends State<SmsDetails> {
-  final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('SMS_DETAILS').doc('44824127200').collection('255657281303').snapshots();
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+      .collection('SMS_DETAILS')
+      // ignore: unnecessary_brace_in_string_interps
+      .snapshots();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
-        stream: _usersStream,
+        stream: FirebaseFirestore.instance
+            .collection('SMS_DETAILS')
+            .doc('${widget.transactionid}')
+            .collection('${widget.phone}')
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong');

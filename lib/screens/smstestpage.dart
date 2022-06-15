@@ -47,7 +47,7 @@ class SmsTestPage extends StatelessWidget {
 
    String ujumbekuweka ='''Zoezi la kuweka fedha kwa FEISAL KHALFAN, 255657281303 limefanikiwa. 
   Kiasi Tsh 3,000. Mrejaa Tsh 56. Salio Jipya ni Tsh 162,081.
-   Kumbukumbu No: 44824127200. 22/05/22 22:02. ''';
+   Kumbukumbu No: 44824127299. 22/05/22 22:02. ''';
 
   //Alert Dialog to display sms after recieving
   showAlertDialog(BuildContext context, String sms) {
