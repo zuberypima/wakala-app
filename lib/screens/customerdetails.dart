@@ -2,52 +2,68 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wakala/widgets/boxtwo.dart';
 
-
 class CustomerDetailsPage extends StatefulWidget {
-  const CustomerDetailsPage({ Key? key }) : super(key: key);
+  const CustomerDetailsPage({Key? key}) : super(key: key);
 
   @override
   State<CustomerDetailsPage> createState() => _CustomerDetailsPageState();
 }
 
 class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
-    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My Customers'),),
-      body: ListView(
-        children:[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(child: TextFormField(),),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.blueGrey,
+        title: Text('Customers'),
+      ),
+      body: ListView(children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 40,
+            child: TextFormField(
+              decoration: InputDecoration(
+                hintText: 'Search',
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      ),
+                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15))
+                      ),
+            ),
           ),
-          Container (
-        height: MediaQuery.of(context).size.height,
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height,
           child: StreamBuilder<QuerySnapshot>(
             stream: _usersStream,
-            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
                 return Text('Something went wrong');
               }
-            
+
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Text("Loading");
               }
-            
+
               return ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                  return  Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: BoxTwo(phone: data['Name'],amount: data['phonenumber'],),
-                      );
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(child: ListTile(title:Text(data['Name']),subtitle: Text(data['phonenumber']),))
+                  );
                 }).toList(),
               );
             },
           ),
-        ),]
-      ),
+        ),
+      ]),
     );
   }
 }

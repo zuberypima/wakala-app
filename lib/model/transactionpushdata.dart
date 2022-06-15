@@ -15,7 +15,7 @@ class Transactiondata {
   DatabaseReference camref =
       FirebaseDatabase.instance.ref("TransactionDetails/Cammision");
   String float = '';
- final reportData = reportDataFromJson('');
+ //final reportData = reportDataFromJson('');
 //Strams
   floatamount(String floatvalue) async {
     await floatref.set({
@@ -40,7 +40,7 @@ class Transactiondata {
 
     floatstream.listen((event) {
       //floatvalue =event.snapshot.value.toString();
-      reportData!= event.snapshot.value.toString();
+     // reportData!= event.snapshot.value.toString();
     });
   return float.toString();
   }

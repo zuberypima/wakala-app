@@ -40,11 +40,11 @@ class FillterIncomingSMS {
   phonenumber(String fornumber) async {
     RegExp exp = RegExp(r'[\d]{12}');
     RegExpMatch? match = exp.firstMatch(fornumber);
-    takensms = fornumber.replaceAll('${match![0]}', '');
+    newsms = fornumber.replaceAll('${match![0]}', '');
     print(match[0]);
     _phone = match[0].toString();
-    _transId = match[0];
-    transId(takensms);
+
+    transId(newsms);
   }
 
 //TRANSACTION ID
@@ -53,7 +53,7 @@ class FillterIncomingSMS {
     RegExpMatch? match = exp.firstMatch(forid);
     takensms = forid.replaceAll('${match![0]}', '');
     print(match[0]);
-
+    _transId = match[0];
     takeamount(takensms);
   }
 
