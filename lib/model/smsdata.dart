@@ -12,7 +12,7 @@ class SmsInformation extends StatefulWidget {
 
 class _SmsInformationState extends State<SmsInformation> {
   final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
+      FirebaseFirestore.instance.collection('SMS_DETAILS').doc('44824127200').collection('255657281303').snapshots();
 
   @override
   Widget build(BuildContext context) {

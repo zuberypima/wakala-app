@@ -1,14 +1,15 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:wakala/model/reportdata.dart';
 
 class ReportDetails {
   String? float;
   String? floatvalue;
     String? transvalue;
-
-  DatabaseReference floatref =
+String? data;
+  DatabaseReference floatref=
       FirebaseDatabase.instance.ref("TransactionDetails/Float");
-//  final reportData = reportDataFromJson('');
+  final reportData = reportDataFromJson('');
 
 
 
@@ -29,4 +30,12 @@ class ReportDetails {
     });
     return floatvalue;
   }
+  //Read Float Data
+Future<String?>floatDetails()async{
+  floatref.onValue.listen((DatabaseEvent event) { 
+    final floatdata =event.snapshot.value;
+    
+  });
+  return data.toString();
+}
 }

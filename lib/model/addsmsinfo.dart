@@ -13,7 +13,7 @@ class AddSmsInfo {
 
   receivedsms(String name, String _phone, String _amount, String _profit,
       String _balance, String transId, String _date,String _smstype) async {
-    await smsCollection.doc(_phone).collection(transId).add({
+    await smsCollection.doc(transId).collection(_phone).add({
       "Name": name,
       "phonenumber": _phone,
       "amount": _amount,
