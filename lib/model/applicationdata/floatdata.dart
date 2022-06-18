@@ -5,21 +5,22 @@ class FloatData{
 
 String float='';
 Future<String?> floatvalue()async{
-   await FirebaseFirestore.instance
+  return await FirebaseFirestore.instance
     .collection('Wakala_App')
     .doc('User_id').collection('FloatData').doc('Float')
     .get()
     .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         print('Document exists on the database');
-      String datas=  documentSnapshot.get('Amount');
+      String datas=  documentSnapshot.get('Amount').toString();
       setState(){
         float =datas;
       }
       print(float);
       print('object');
-        return float;
+      return float;
       }
+      print(float);
     
     });
   }
