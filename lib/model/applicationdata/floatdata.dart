@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class FloatData{
 
-
- floatvalue()async{
+String float='';
+Future<String?> floatvalue()async{
    await FirebaseFirestore.instance
     .collection('Wakala_App')
     .doc('User_id').collection('FloatData').doc('Float')
@@ -13,10 +13,14 @@ class FloatData{
       if (documentSnapshot.exists) {
         print('Document exists on the database');
       String datas=  documentSnapshot.get('Amount');
-print(datas);
-        
+      setState(){
+        float =datas;
       }
-      return documentSnapshot.get('Amount');
+      print(float);
+      print('object');
+        return float;
+      }
+    
     });
   }
 

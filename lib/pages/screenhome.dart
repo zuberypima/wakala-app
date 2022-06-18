@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 Stream collectionStream = FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
-String float =FloatData().floatvalue().toString();
+//String float =FloatData().floatvalue();
   @override
   Widget build(BuildContext context) {
     return Scaffold(body:  Column(
@@ -52,7 +52,7 @@ String float =FloatData().floatvalue().toString();
                   ),
                 ),
               ),
-              Positioned(bottom: 20, left: 20, child: Boxone(Colors.orange,'${float}','50%','Tsh:350,000')),
+              Positioned(bottom: 20, left: 20, child: Boxone(Colors.orange,'${FloatData().floatvalue()}','50%','Tsh:350,000')),
               Positioned(bottom: 20, right: 20, child: Boxone(Colors.blue,'Cash','50%','Tsh:350,000',)),
             ],
           ),
