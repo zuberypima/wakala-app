@@ -3,26 +3,29 @@ import 'package:flutter/material.dart';
 
 class FloatData{
 
-String float='';
-Future<String?> floatvalue()async{
-  return await FirebaseFirestore.instance
+String? float;
+Future<String> floatvalue()async{
+   await FirebaseFirestore.instance
     .collection('Wakala_App')
     .doc('User_id').collection('FloatData').doc('Float')
     .get()
     .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         print('Document exists on the database');
-      String datas=  documentSnapshot.get('Amount').toString();
+      String float=  documentSnapshot.get('Amount');
       setState(){
-        float =datas;
+      //float =datas;
       }
-      print(float);
+     // print(datas);
       print('object');
-      return float;
+     // print(float);
+
+     // return datas;
       }
-      print(float);
-    
     });
+    print(float);
+   return   float.toString();
+
   }
 
 
