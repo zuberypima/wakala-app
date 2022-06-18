@@ -12,11 +12,23 @@ class FloatData{
     .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         print('Document exists on the database');
-      String datas=  documentSnapshot.get(FieldPath(['Amount']));
-      print(datas);
+      String datas=  documentSnapshot.get('Amount');
+print(datas);
         
       }
-      return documentSnapshot.data();
+      return documentSnapshot.get('Amount');
     });
   }
+
+
+  // floatValue()async{
+  //   FirebaseFirestore.instance
+  //   .collection('users').doc()
+  //   .get()
+  //   .then((QuerySnapshot querySnapshot) {
+  //       querySnapshot.docs.forEach((doc) {
+  //           print(doc["first_name"]);
+  //       });
+  //   })
+ // }
 }
