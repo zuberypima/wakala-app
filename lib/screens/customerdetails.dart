@@ -9,7 +9,13 @@ class CustomerDetailsPage extends StatefulWidget {
   State<CustomerDetailsPage> createState() => _CustomerDetailsPageState();
 }
 
+
 class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
+   Stream<QuerySnapshot> _customers = FirebaseFirestore.instance
+      .collection('Wakala_App')
+      .doc('User_id')
+      .collection('Customers_Details')
+      .snapshots();
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
   @override
@@ -39,7 +45,7 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
         Container(
           height: MediaQuery.of(context).size.height,
           child: StreamBuilder<QuerySnapshot>(
-            stream: _usersStream,
+            stream: _customers,
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -56,7 +62,7 @@ class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
                       document.data()! as Map<String, dynamic>;
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(child: ListTile(title:Text(data['Name']),subtitle: Text(data['phonenumber']),))
+                    child: Container(child: ListTile(title:Text(data['Name']),subtitle: Text(data['Phone']),))
                   );
                 }).toList(),
               );

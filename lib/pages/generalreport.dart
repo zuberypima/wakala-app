@@ -2,6 +2,7 @@
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:wakala/model/applicationdata/pullallData.dart';
 import 'package:wakala/model/pulltransactionsdata.dart';
 import 'package:wakala/model/reportdata.dart';
 import 'package:wakala/model/reportdetails/report.dart';
@@ -46,7 +47,7 @@ class _GeneralReportState extends State<GeneralReport> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Boxone(Color.fromRGBO(12, 44, 92, 3), 'Camision','',floatvalue.toString()),
+PullData().camisionAmount(),
                 Boxone(Colors.cyanAccent, 'Transactions','','99'),
               ],
             ),
@@ -65,6 +66,7 @@ class _GeneralReportState extends State<GeneralReport> {
               ],
           ),
            ),
+          // PullData().numberoftraans(),
 ElevatedButton(onPressed: (){
   floatamountRead();
 }, child: Text('test'))
