@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wakala/model/applicationdata/floatdata.dart';
+import 'package:wakala/model/applicationdata/pullcammision.dart';
 import 'package:wakala/model/smsdata.dart';
 import 'package:wakala/widgets/boxcontainer.dart';
 import 'package:wakala/widgets/boxtwo.dart';
@@ -52,10 +53,12 @@ Stream collectionStream = FirebaseFirestore.instance.collection('SMS_DETAILS').s
                   ),
                 ),
               ),
-              Positioned(bottom: 20, left: 20, child: Boxone(Colors.orange,'${FloatData().floatvalue()}','50%','Tsh:350,000')),
+              Positioned(bottom: 20, left: 20, child:PullData().cammisonAmount()),
               Positioned(bottom: 20, right: 20, child: Boxone(Colors.blue,'Cash','50%','Tsh:350,000',)),
             ],
           ),
+
+          // Boxone(Colors.orange,'${FloatData().floatvalue()}','50%','Tsh:350,000')
           Container(
             color: Colors.white,
             height: MediaQuery.of(context).size.height *0.49,
