@@ -10,7 +10,7 @@ class AddSmsInfo {
   DatabaseReference ref = FirebaseDatabase.instance.ref().child('');
   CollectionReference smsCollection =
       FirebaseFirestore.instance.collection("SMS_DETAILS");
-
+CollectionReference wakalacollection =FirebaseFirestore.instance.collection('Wakala_App');
   receivedsms(String name, String _phone, String _amount, String _profit,
       String _balance, String transId, String _date,String _smstype) async {
     await smsCollection.doc(transId).collection(_phone).add({
@@ -22,6 +22,18 @@ class AddSmsInfo {
       "transactionId": transId,
       "Date": _date,
       "TransactionType":_smstype
+    });
+    cammisionvalue(_profit);
+  }
+
+  cammisionvalue(String cammision)async{
+await wakalacollection.doc('User_id').collection('Cammision_Value').doc('Profit').set({
+'Amount':cammision
+});
+  }
+  floatBalance(String balance)async{
+    await wakalacollection.doc('User_id').collection('Float_Balance').doc('Float').set({
+      'Balance':balance,
     });
   }
 }
