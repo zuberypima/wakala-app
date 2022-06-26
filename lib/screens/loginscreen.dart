@@ -1,9 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:wakala/model/applicationdata/userdata.dart';
+import 'package:wakala/model/applicationdata/uservalidity.dart';
+import 'package:wakala/pages/homepage.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,7 +68,7 @@ class LoginPage extends StatelessWidget {
           ),
           InkWell(
             onTap: (){
-              UserValidity().checkuser('12345');
+              checkuser('1000');
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
@@ -85,5 +92,20 @@ class LoginPage extends StatelessWidget {
         ],
       ),
     ));
+  }
+
+  checkuser (String uid){
+    FirebaseFirestore.instance
+    .collection('Users').where('Code',isEqualTo: uid)
+    .get()
+    .then((QuerySnapshot snapshots) {
+      if(snapshots.docs.isNotEmpty){
+        Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));
+      }
+      if(snapshots.docs.isEmpty){
+        print('Hayupo');
+      }
+    }
+    );
   }
 }
