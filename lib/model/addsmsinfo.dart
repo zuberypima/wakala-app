@@ -13,7 +13,7 @@ class AddSmsInfo {
 CollectionReference wakalacollection =FirebaseFirestore.instance.collection('Wakala_App');
   receivedsms(String name, String _phone, String _amount, String _profit,
       String _balance, String transId, String _date,String _smstype) async {
-    await smsCollection.doc(transId).collection(_phone).add({
+    await wakalacollection.doc('User_id').collection('SMS_Details').doc(transId).collection(_phone).add({
       "Name": name,
       "phonenumber": _phone,
       "amount": _amount,
@@ -22,8 +22,10 @@ CollectionReference wakalacollection =FirebaseFirestore.instance.collection('Wak
       "transactionId": transId,
       "Date": _date,
       "TransactionType":_smstype
-    });
-    cammisionvalue(_profit);
+    }).then((value) {
+      cammisionvalue(_profit);
+    }).then((value) {floatBalance(_balance);}).then((value) {customerDetails(name, _phone);});
+ // await  cammisionvalue(_profit);
   }
 
   cammisionvalue(String cammision)async{
@@ -35,5 +37,11 @@ await wakalacollection.doc('User_id').collection('Cammision_Value').doc('Profit'
     await wakalacollection.doc('User_id').collection('Float_Balance').doc('Float').set({
       'Balance':balance,
     });
+  }
+  customerDetails(String customerName,String phonenumber)async{
+await  wakalacollection.doc('User_id').collection('Customers_Details').add({
+  'Name':customerName,
+  'Phone':phonenumber
+});
   }
 }
