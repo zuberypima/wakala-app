@@ -1,0 +1,6 @@
+class AutoPickSms{
+
+  kuwekaSMS(){
+    
+  }
+}
