@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wakala/model/applicationdata/userdata.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -58,22 +59,26 @@ class LoginPage extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: Align(
-              child: Container(
-                //width: MediaQuery.of(context).size.width / 50,
-                   height: 40,
-            width: 150,
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(12, 44, 92, 3),
-                  borderRadius: BorderRadius.circular(15)
+          InkWell(
+            onTap: (){
+              UserValidity().checkuser('12345');
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Align(
+                child: Container(
+                     height: 40,
+              width: 150,
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(12, 44, 92, 3),
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  child: Center(
+                      child: Text(
+                    'Login',
+                    style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400),
+                  )),
                 ),
-                child: Center(
-                    child: Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400),
-                )),
               ),
             ),
           )
