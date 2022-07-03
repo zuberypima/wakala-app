@@ -37,6 +37,11 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(icon: Icon(Icons.folder), label: 'Report'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ]),
-    ));
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.green,
+            onPressed: (){},child: Icon(Icons.phone)),
+    )
+    
+    );
   }
 }

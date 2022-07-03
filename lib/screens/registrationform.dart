@@ -220,7 +220,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ],
             ),
           ),
-          Divider()
         ],
       ),
     ));
