@@ -11,6 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String code='';
+  String password='';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,6 +37,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: 8,
                 ),
                 TextFormField(
+                  onChanged: ((value) {
+                    code=value;
+                  }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15)),
@@ -57,6 +62,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: 8,
                 ),
                 TextFormField(
+                  onChanged: ((value) {
+                    password=value;
+                  }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15)),
@@ -68,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           InkWell(
             onTap: (){
-              checkuser('1000');
+              checkuser(code,password);
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
@@ -94,9 +102,9 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
-  checkuser (String uid){
+  checkuser (String uid,String _password){
     FirebaseFirestore.instance
-    .collection('Users').where('Code',isEqualTo: uid)
+    .collection('Users').where('Code',isEqualTo: uid).where('Password',isEqualTo:_password )
     .get()
     .then((QuerySnapshot snapshots) {
       if(snapshots.docs.isNotEmpty){
