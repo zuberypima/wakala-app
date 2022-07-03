@@ -8,6 +8,7 @@ import 'package:wakala/model/reportdata.dart';
 import 'package:wakala/model/reportdetails/report.dart';
 import 'package:wakala/model/transactionpushdata.dart';
 import 'package:wakala/screens/customerdetails.dart';
+import 'package:wakala/screens/reportscreen.dart';
 import 'package:wakala/widgets/boxcontainer.dart';
 
 class GeneralReport extends StatefulWidget {
@@ -57,7 +58,11 @@ PullData().camisionAmount(),
              child: Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Boxone(Colors.orange, 'Report','',''),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ReportPage()));
+                  },
+                  child: Boxone(Colors.orange, 'Report','','')),
                 InkWell(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerDetailsPage()));

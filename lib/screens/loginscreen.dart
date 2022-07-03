@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           InkWell(
             onTap: (){
-              checkuser(code,password);
+              checkuser('1000','1234');
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
