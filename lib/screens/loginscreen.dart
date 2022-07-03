@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wakala/model/applicationdata/uservalidity.dart';
 import 'package:wakala/pages/homepage.dart';
+import 'package:wakala/screens/registrationform.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,8 +12,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String code='';
-  String password='';
+  String code = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    code=value;
+                    code = value;
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -63,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    password=value;
+                    password = value;
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -75,45 +76,68 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           InkWell(
-            onTap: (){
-              checkuser('1000','1234');
+            onTap: () {
+              checkuser('1000', '1234');
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Align(
                 child: Container(
-                     height: 40,
-              width: 150,
+                  height: 40,
+                  width: 150,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(12, 44, 92, 3),
-                    borderRadius: BorderRadius.circular(15)
-                  ),
+                      color: Color.fromRGBO(12, 44, 92, 3),
+                      borderRadius: BorderRadius.circular(15)),
                   child: Center(
                       child: Text(
                     'Login',
-                    style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400),
                   )),
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30,right: 20,top: 10),
+            child: Row(
+              
+              children: [
+                SizedBox(width: 40,),
+                Text(
+                  '"Hapana Sina akaunti"',
+                  style: TextStyle(color: Colors.black38, fontSize: 15),
+                ),
+                SizedBox(width: 5,),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RegistrationForm()));
+                  },
+                  child: Text('Jisajili',style: TextStyle(color: Colors.blue,fontSize: 18),))
+              ],
+            ),
+          ),
+          Divider()
         ],
       ),
     ));
   }
 
-  checkuser (String uid,String _password){
+  checkuser(String uid, String _password) {
     FirebaseFirestore.instance
-    .collection('Users').where('Code',isEqualTo: uid).where('Password',isEqualTo:_password )
-    .get()
-    .then((QuerySnapshot snapshots) {
-      if(snapshots.docs.isNotEmpty){
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));
+        .collection('Users')
+        .where('Code', isEqualTo: uid)
+        .where('Password', isEqualTo: _password)
+        .get()
+        .then((QuerySnapshot snapshots) {
+      if (snapshots.docs.isNotEmpty) {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
       }
-      if(snapshots.docs.isEmpty){
+      if (snapshots.docs.isEmpty) {
         print('Hayupo');
       }
-    }
-    );
+    });
   }
 }

@@ -10,7 +10,7 @@ class ReportPage extends StatefulWidget {
 
 class _ReportPageState extends State<ReportPage> {
   final Stream<QuerySnapshot> _reportstream =
-      FirebaseFirestore.instance.collection('test').snapshots();
+      FirebaseFirestore.instance.collection('Wakala_App').doc('User_id').collection('SMS_Details').snapshots();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
