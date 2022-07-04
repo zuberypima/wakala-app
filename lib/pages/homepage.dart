@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wakala/pages/generalreport.dart';
+import 'package:wakala/pages/profilepage.dart';
 import 'package:wakala/pages/screenhome.dart';
 
 import 'package:wakala/screens/smstestpage.dart';
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   final _selectPage = [
     HomeScreen(),
     GeneralReport(),
-    SmsTestPage(),
+  ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
