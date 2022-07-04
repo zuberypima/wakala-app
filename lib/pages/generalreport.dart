@@ -60,7 +60,7 @@ PullData().camisionAmount(),
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ReportPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ReportPage()));
                   },
                   child: Boxone(Colors.orange, 'Report','','')),
                 InkWell(
@@ -71,10 +71,6 @@ PullData().camisionAmount(),
               ],
           ),
            ),
-          // PullData().numberoftraans(),
-ElevatedButton(onPressed: (){
-  floatamountRead();
-}, child: Text('test'))
           ],
           
       ),

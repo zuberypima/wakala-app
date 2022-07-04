@@ -10,15 +10,20 @@ class AddSmsInfo {
   DatabaseReference ref = FirebaseDatabase.instance.ref().child('');
   CollectionReference smsCollection =
       FirebaseFirestore.instance.collection("SMS_DETAILS");
+      CollectionReference cammisionCollection =
+      FirebaseFirestore.instance.collection("Cammision");
+      CollectionReference floatCollection =
+      FirebaseFirestore.instance.collection("Float_Balance");
 CollectionReference wakalacollection =FirebaseFirestore.instance.collection('Wakala_App');
   receivedsms(String name, String _phone, String _amount, String _profit,
       String _balance, String transId, String _date,String _smstype) async {
-    await wakalacollection.doc('User_id').collection('SMS_Details').doc(transId).collection(_phone).add({
+   // await wakalacollection.doc('User_id').collection('SMS_Details').doc(transId).collection(_phone)
+    await smsCollection.add({
       "Name": name,
       "phonenumber": _phone,
       "amount": _amount,
       "profit": _profit,
-      "balance": _balance,
+     // "balance": _balance,
       "transactionId": transId,
       "Date": _date,
       "TransactionType":_smstype
@@ -29,12 +34,14 @@ CollectionReference wakalacollection =FirebaseFirestore.instance.collection('Wak
   }
 
   cammisionvalue(String cammision)async{
-await wakalacollection.doc('User_id').collection('Cammision_Value').doc('Profit').set({
+ //await wakalacollection.doc('User_id').collection('Cammision_Value').doc('Profit')
+  await cammisionCollection.doc('Profit').set({
 'Amount':cammision
 });
   }
   floatBalance(String balance)async{
-    await wakalacollection.doc('User_id').collection('Float_Balance').doc('Float').set({
+   // await wakalacollection.doc('User_id').collection('Float_Balance').doc('Float')
+    await floatCollection.doc('Float').set({
       'Balance':balance,
     });
   }

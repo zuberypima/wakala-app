@@ -11,14 +11,15 @@ class AutoPickSms{
          //  AddSmsInfo().receivedsms();
            telephony.listenIncomingSms(
                onNewMessage: (SmsMessage messagge) {
-                 if (messagge.address == "+255685387767") {
+                 if (messagge.address == "+255718934183") {
                    FillterIncomingSMS().takeName(messagge.body.toString());
+                   print('object');
                    //showAlertDialog(context, messagge.body.toString());
                  } else {
                print("Sender is unknwon");
                  }
                },
-               onBackgroundMessage: backgrounMessageHandler,
+             //  onBackgroundMessage: backgrounMessageHandler,
                listenInBackground: false
                );
   }

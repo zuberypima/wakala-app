@@ -5,14 +5,29 @@ import 'package:wakala/widgets/boxcontainer.dart';
 class PullData {
   CollectionReference wakalaCollection =
       FirebaseFirestore.instance.collection('Wakala_App');
+      CollectionReference _smsCollection =
+      FirebaseFirestore.instance.collection('SMS_DETAILS');
+
+      //Float
+        CollectionReference _floatCollection =
+      FirebaseFirestore.instance.collection('Float_Balance');
+//Cammision
+      CollectionReference _cammisionCollection =
+      FirebaseFirestore.instance.collection('Cammision');
   Stream<QuerySnapshot> _customers = FirebaseFirestore.instance
       .collection('Wakala_App')
       .doc('User_id')
       .collection('SMS_Details')
       .snapshots();
+
+      //new
+    Stream<QuerySnapshot> _smsDetail = FirebaseFirestore.instance
+      .collection('SMS_Details')
+      .snapshots();
   cashAmount() {
     return FutureBuilder<DocumentSnapshot>(
-      future: wakalaCollection
+      future: 
+      wakalaCollection
           .doc('User_id')
           .collection('SMS_Details')
           .doc('Float')
@@ -33,13 +48,11 @@ class PullData {
     );
   }
 
+  
+  //Function to pick float amount
   floatAmount() {
     return FutureBuilder<DocumentSnapshot>(
-      future: wakalaCollection
-          .doc('User_id')
-          .collection('Float_Balance')
-          .doc('Float')
-          .get(),
+      future:_floatCollection.doc('Float').get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -68,11 +81,12 @@ class PullData {
 //Cammision
   camisionAmount() {
     return FutureBuilder<DocumentSnapshot>(
-      future: wakalaCollection
-          .doc('User_id')
-          .collection('Cammision_Value')
-          .doc('Profit')
-          .get(),
+      future: _cammisionCollection.doc('Profit').get(),
+      // wakalaCollection
+      //     .doc('User_id')
+      //     .collection('Cammision_Value')
+      //     .doc('Profit')
+      //     .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
