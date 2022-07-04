@@ -18,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Stream collectionStream =
       FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
-//String float =FloatData().floatvalue();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

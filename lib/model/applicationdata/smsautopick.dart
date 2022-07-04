@@ -1,6 +1,25 @@
-class AutoPickSms{
+import 'package:telephony/telephony.dart';
+import 'package:wakala/main.dart';
+import 'package:wakala/model/addsmsinfo.dart';
+import 'package:wakala/utilit/depositsmsfilter.dart';
 
-  kuwekaSMS(){
-    
+class AutoPickSms{
+  final Telephony telephony = Telephony.instance;
+
+  depositSMS(){
+     //function to recive sms
+         //  AddSmsInfo().receivedsms();
+           telephony.listenIncomingSms(
+               onNewMessage: (SmsMessage messagge) {
+                 if (messagge.address == "+255685387767") {
+                   FillterIncomingSMS().takeName(messagge.body.toString());
+                   //showAlertDialog(context, messagge.body.toString());
+                 } else {
+               print("Sender is unknwon");
+                 }
+               },
+               onBackgroundMessage: backgrounMessageHandler,
+               listenInBackground: false
+               );
   }
 }

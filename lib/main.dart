@@ -2,6 +2,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:telephony/telephony.dart';
+import 'package:wakala/model/applicationdata/smsautopick.dart';
 import 'package:wakala/screens/loginscreen.dart';
 import 'package:wakala/utilit/depositsmsfilter.dart';
 
@@ -27,6 +28,7 @@ backgrounMessageHandler(SmsMessage message) async {
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await AutoPickSms().depositSMS();
 
  
   runApp(MyApp());
