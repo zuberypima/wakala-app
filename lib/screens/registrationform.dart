@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:wakala/model/applicationdata/userDetails.dart';
 import 'package:wakala/model/applicationdata/uservalidity.dart';
 import 'package:wakala/pages/homepage.dart';
 import 'package:wakala/screens/loginscreen.dart';
@@ -13,8 +14,11 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
-  String code = '';
-  String password = '';
+  String _name = '';
+  String _phone = '';
+  String _wakalaCode='';
+  String _location='';
+  String _password ='';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +44,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    code = value;
+                    _name = value;
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -65,7 +69,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    password = value;
+                    _phone = value;
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -90,7 +94,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    password = value;
+                    _wakalaCode = value;
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -115,7 +119,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    password = value;
+                    _location = value;
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -140,7 +144,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    password = value;
+                    _password = value;
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -165,7 +169,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 TextFormField(
                   onChanged: ((value) {
-                    password = value;
+                  
                   }),
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -183,20 +187,26 @@ class _RegistrationFormState extends State<RegistrationForm> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Align(
-                child: Container(
-                  height: 40,
-                  width: 150,
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(12, 44, 92, 3),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Center(
-                      child: Text(
-                    'Sajili',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400),
-                  )),
+                child: InkWell(
+                  onTap: ()async {
+                 await UserDetails().registerUser(_name, _phone, _wakalaCode, _location, _password);
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => LoginPage())));
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 150,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(12, 44, 92, 3),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Center(
+                        child: Text(
+                      'Sajili',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400),
+                    )),
+                  ),
                 ),
               ),
             ),

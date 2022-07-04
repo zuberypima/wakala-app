@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Row(
                     children: [
                       Text('Phone:',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
-                       Text('+255789065',style: TextStyle(fontSize: 18),),
+                       Text('+25578906589',style: TextStyle(fontSize: 18),),
                     ],
                   ),
                   

@@ -38,6 +38,7 @@ class _GeneralReportState extends State<GeneralReport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromRGBO(12, 44, 92, 3),
         title: Center(child: Text('SMART WAKALA')),
       ),
