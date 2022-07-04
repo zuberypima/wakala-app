@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:wakala/widgets/boxtwo.dart';
 
 class SmsDetails extends StatefulWidget {
-  String phone;
+  //String phone;
   String transactionid;
-  SmsDetails({Key? key, required this.transactionid, required this.phone})
+  SmsDetails({Key? key, required this.transactionid,})
       : super(key: key);
 
   @override
@@ -22,10 +22,9 @@ class _SmsDetailsState extends State<SmsDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('SMS_DETAILS')
-            .doc('${widget.transactionid}')
-            .collection('${widget.phone}')
+        stream: 
+        FirebaseFirestore.instance
+            .collection('SMS_DETAILS').where('transactionId',isEqualTo: widget.transactionid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
