@@ -9,7 +9,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  CollectionReference _userData =FirebaseFirestore.instance.collection('collectionPath');
+  CollectionReference _userData =FirebaseFirestore.instance.collection('Users');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(color: Colors.grey,borderRadius: BorderRadius.circular(20)),
               child:  FutureBuilder<DocumentSnapshot>(
-                future: _userData.doc().get(),
+                future: _userData.doc('userId').get(),
                 builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                   if(snapshot.hasError){
                               return Text("Something went wrong");
@@ -51,48 +51,48 @@ class _ProfilePageState extends State<ProfilePage> {
                   }
                   if(snapshot.connectionState ==ConnectionState.done){
                     Map<String,dynamic>data =snapshot.data!.data() as Map<String,dynamic>;
-                    return Text('data');
+                    return Column(
+                        
+                        crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20,top: 20),
+                  child: Row(
+                    children: [
+                      Text('Name:',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                       Text('${data['Jina']}',style: TextStyle(fontSize: 18),),
+                    ],
+                  ),
+                ),
+                Divider(color:  Color.fromRGBO(12, 44, 92, 3),),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20,top: 20),
+                  child: Row(
+                    children: [
+                      Text('Phone:',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                       Text('${data['Phone']}',style: TextStyle(fontSize: 18),),
+                    ],
+                  ),
+                  
+                ),
+                Divider(color:  Color.fromRGBO(12, 44, 92, 3),),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20,top: 20),
+                  child: Row(
+                    children: [
+                      Text('Code:',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                       Text('${data['Code']}',style: TextStyle(fontSize: 18),),
+                    ],
+                  ),
+                ),
+                Divider(color:  Color.fromRGBO(12, 44, 92, 3),)
+              ],);
                   }
                   return Center(child: CircularProgressIndicator(),);
                 },
               ),
-              // child: Column(
-                        
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-
-              //   children: [
-              //   Padding(
-              //     padding: const EdgeInsets.only(left: 20,top: 20),
-              //     child: Row(
-              //       children: [
-              //         Text('Name:',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
-              //          Text('Juma Shabani',style: TextStyle(fontSize: 18),),
-              //       ],
-              //     ),
-              //   ),
-              //   Divider(color:  Color.fromRGBO(12, 44, 92, 3),),
-              //   Padding(
-              //     padding: const EdgeInsets.only(left: 20,top: 20),
-              //     child: Row(
-              //       children: [
-              //         Text('Phone:',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
-              //          Text('+25578906589',style: TextStyle(fontSize: 18),),
-              //       ],
-              //     ),
-                  
-              //   ),
-              //   Divider(color:  Color.fromRGBO(12, 44, 92, 3),),
-              //   Padding(
-              //     padding: const EdgeInsets.only(left: 20,top: 20),
-              //     child: Row(
-              //       children: [
-              //         Text('Code:',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
-              //          Text('1000',style: TextStyle(fontSize: 18),),
-              //       ],
-              //     ),
-              //   ),
-              //   Divider(color:  Color.fromRGBO(12, 44, 92, 3),)
-              // ],),
+            
             ),
           )
         ],
