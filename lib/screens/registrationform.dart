@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wakala/model/applicationdata/userDetails.dart';
 import 'package:wakala/model/applicationdata/uservalidity.dart';
 import 'package:wakala/pages/homepage.dart';
-import 'package:wakala/screens/loginscreen.dart';
+import 'package:wakala/screens/loginscreenowner.dart';
 import 'package:wakala/screens/registrationform.dart';
 
 class RegistrationForm extends StatefulWidget {

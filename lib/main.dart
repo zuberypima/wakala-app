@@ -3,7 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:telephony/telephony.dart';
 import 'package:wakala/model/applicationdata/smsautopick.dart';
-import 'package:wakala/screens/loginscreen.dart';
+import 'package:wakala/screens/loginscreenowner.dart';
+import 'package:wakala/screens/firstscreen.dart';
 import 'package:wakala/utilit/depositsmsfilter.dart';
 
 
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: const FirstScreen(),
     );
   }
 }

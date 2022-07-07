@@ -4,14 +4,14 @@ import 'package:wakala/model/applicationdata/uservalidity.dart';
 import 'package:wakala/pages/homepage.dart';
 import 'package:wakala/screens/registrationform.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class WakalaLoginPage extends StatefulWidget {
+  const WakalaLoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<WakalaLoginPage> createState() => _WakalaLoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _WakalaLoginPageState extends State<WakalaLoginPage> {
   String code = '';
   String password = '';
   @override
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           InkWell(
             onTap: () {
-              checkuser('1000', '1234');
+              checkuser(code, password);
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
@@ -98,25 +98,6 @@ class _LoginPageState extends State<LoginPage> {
                   )),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 30,right: 20,top: 10),
-            child: Row(
-              
-              children: [
-                SizedBox(width: 40,),
-                Text(
-                  '"Hapana Sina akaunti"',
-                  style: TextStyle(color: Colors.black38, fontSize: 15),
-                ),
-                SizedBox(width: 5,),
-                InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RegistrationForm()));
-                  },
-                  child: Text('Jisajili',style: TextStyle(color: Colors.blue,fontSize: 18),))
-              ],
             ),
           ),
           Divider()

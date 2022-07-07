@@ -11,7 +11,7 @@ class AutoPickSms{
          //  AddSmsInfo().receivedsms();
            telephony.listenIncomingSms(
                onNewMessage: (SmsMessage messagge) {
-                 if (messagge.address == "+255718934183") {
+                 if (messagge.address == "+255685387767") {
                    FillterIncomingSMS().takeName(messagge.body.toString());
                    print('object');
                    //showAlertDialog(context, messagge.body.toString());

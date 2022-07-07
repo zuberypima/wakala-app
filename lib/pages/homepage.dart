@@ -1,6 +1,7 @@
 // THIS IS HOME PAGE
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:wakala/pages/generalreport.dart';
 import 'package:wakala/pages/profilepage.dart';
 import 'package:wakala/pages/screenhome.dart';
@@ -15,6 +16,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late FlutterLocalNotificationsPlugin fltrNotification;
+//   @override
+//  void initState() {
+//    super.initState();
+//     AndroidInitializationSettings androidInitilize =  AndroidInitializationSettings('app_icon');
+//    var iOSinitilize =  IOSInitializationSettings();
+//    var initilizationsSettings =InitializationSettings();
+//    fltrNotification = new FlutterLocalNotificationsPlugin();
+//    fltrNotification.initialize(initilizationsSettings,
+//        onSelectNotification: notificationSelected());
+//  }
   int _selectIndex = 0;
   final _selectPage = [
     HomeScreen(),
@@ -23,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
         child: Scaffold(
       body: _selectPage[_selectIndex],
@@ -45,4 +58,8 @@ class _HomePageState extends State<HomePage> {
     
     );
   }
+      
+//  Future<String?>? notificationSelected(String payload)async{
+// return '';
+//  }
 }

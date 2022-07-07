@@ -8,8 +8,11 @@ import 'package:flutter/material.dart';
 
 class AddSmsInfo {
   DatabaseReference ref = FirebaseDatabase.instance.ref().child('');
+  //SMS Colllection
   CollectionReference smsCollection =
       FirebaseFirestore.instance.collection("SMS_DETAILS");
+
+  
       CollectionReference cammisionCollection =
       FirebaseFirestore.instance.collection("Cammision");
       CollectionReference floatCollection =
@@ -23,14 +26,12 @@ CollectionReference wakalacollection =FirebaseFirestore.instance.collection('Wak
       "phonenumber": _phone,
       "amount": _amount,
       "profit": _profit,
-     // "balance": _balance,
       "transactionId": transId,
       "Date": _date,
       "TransactionType":_smstype
     }).then((value) {
       cammisionvalue(_profit);
     }).then((value) {floatBalance(_balance);}).then((value) {customerDetails(name, _phone);});
- // await  cammisionvalue(_profit);
   }
 
   cammisionvalue(String cammision)async{
