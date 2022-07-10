@@ -1,22 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:wakala/services/notification.dart';
 import 'package:wakala/widgets/boxcontainer.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class PullData {
   CollectionReference wakalaCollection =
       FirebaseFirestore.instance.collection('Wakala_App');
-      CollectionReference _smsCollection =
+  CollectionReference _smsCollection =
       FirebaseFirestore.instance.collection('SMS_DETAILS');
 
-      //Float
-        CollectionReference _floatCollection =
+  //Float
+  CollectionReference _floatCollection =
       FirebaseFirestore.instance.collection('Float_Balance');
 
-      //Cash
-       CollectionReference _cashCollection =
+  //Cash
+  CollectionReference _cashCollection =
       FirebaseFirestore.instance.collection('CashData');
 //Cammision
-      CollectionReference _cammisionCollection =
+  CollectionReference _cammisionCollection =
       FirebaseFirestore.instance.collection('Cammision');
   Stream<QuerySnapshot> _customers = FirebaseFirestore.instance
       .collection('Wakala_App')
@@ -24,16 +27,12 @@ class PullData {
       .collection('SMS_Details')
       .snapshots();
 
-      //new
-    Stream<QuerySnapshot> _smsDetail = FirebaseFirestore.instance
-      .collection('SMS_Details')
-      .snapshots();
+  //new
+  Stream<QuerySnapshot> _smsDetail =
+      FirebaseFirestore.instance.collection('SMS_Details').snapshots();
   cashAmount() {
     return FutureBuilder<DocumentSnapshot>(
-      future: 
-      _cashCollection
-          .doc('Cash')
-          .get(),
+      future: _cashCollection.doc('Cash').get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -42,19 +41,18 @@ class PullData {
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
-          return Boxone(
-              Colors.blue, 'Balance', '', 'Tsh:${data['Amount']}');
+          
+          return Boxone(Colors.blue, 'Balance', '', 'Tsh:${data['Amount']}');
         }
         return Boxone(Colors.blue, 'Balance', '', '');
       },
     );
   }
 
-  
   //Function to pick float amount
   floatAmount() {
     return FutureBuilder<DocumentSnapshot>(
-      future:_floatCollection.doc('Float').get(),
+      future: _floatCollection.doc('Float').get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -63,6 +61,12 @@ class PullData {
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
+              double compdata = double.parse(data['Balance']);
+          if (compdata <= 50000.0) {
+            tz.initializeTimeZones();
+            NotificationService().showNotification(
+                1, 'Float is low', 'Tafadhali  ongeza float yako', 2);
+          }
           return Boxone(
             Colors.orange,
             'Float',
@@ -84,11 +88,6 @@ class PullData {
   camisionAmount() {
     return FutureBuilder<DocumentSnapshot>(
       future: _cammisionCollection.doc('Profit').get(),
-      // wakalaCollection
-      //     .doc('User_id')
-      //     .collection('Cammision_Value')
-      //     .doc('Profit')
-      //     .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -109,8 +108,6 @@ class PullData {
     );
   }
 
-  
-
   numberoftraans() async {
     await StreamBuilder(
       stream: _customers,
@@ -121,7 +118,6 @@ class PullData {
         }
         return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            
           Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
           return Text('${data.length.toString()}');
         }).toList());

@@ -5,6 +5,7 @@ import 'package:telephony/telephony.dart';
 import 'package:wakala/model/applicationdata/smsautopick.dart';
 import 'package:wakala/screens/loginscreenowner.dart';
 import 'package:wakala/screens/firstscreen.dart';
+import 'package:wakala/services/notification.dart';
 import 'package:wakala/utilit/depositsmsfilter.dart';
 
 
@@ -30,6 +31,7 @@ void main()async {
    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await AutoPickSms().depositSMS();
+   NotificationService().initNotification();
 
  
   runApp(MyApp());

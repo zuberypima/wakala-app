@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   CollectionReference cashupdate =FirebaseFirestore.instance.collection('CashData');
 
   String cahsvalue='';
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

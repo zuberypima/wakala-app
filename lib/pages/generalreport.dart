@@ -12,28 +12,27 @@ import 'package:wakala/screens/reportscreen.dart';
 import 'package:wakala/widgets/boxcontainer.dart';
 
 class GeneralReport extends StatefulWidget {
-   GeneralReport({Key? key}) : super(key: key);
+  GeneralReport({Key? key}) : super(key: key);
 
   @override
   State<GeneralReport> createState() => _GeneralReportState();
 }
 
 class _GeneralReportState extends State<GeneralReport> {
- 
- String? float;
+  String? float;
   String? floatvalue;
- DatabaseReference floatref =FirebaseDatabase.instance.ref("TransactionDetails/Float");
+  DatabaseReference floatref =
+      FirebaseDatabase.instance.ref("TransactionDetails/Float");
 //  final reportData = reportDataFromJson('');
- String? floatamountRead(  ) {
-  
-  Stream<DatabaseEvent> floatstream = floatref.onValue;
-  
-    floatstream.listen((DatabaseEvent  event) {
-      floatvalue =event.snapshot.value.toString();
+  String? floatamountRead() {
+    Stream<DatabaseEvent> floatstream = floatref.onValue;
+
+    floatstream.listen((DatabaseEvent event) {
+      floatvalue = event.snapshot.value.toString();
     });
- return floatvalue;
+    return floatvalue;
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,35 +44,41 @@ class _GeneralReportState extends State<GeneralReport> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20,right: 20,top: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-PullData().camisionAmount(),
-                Boxone(Colors.cyanAccent, 'Transactions','','99'),
+                PullData().camisionAmount(),
+                Boxone(Colors.cyanAccent, 'Transactions', '', '99'),
               ],
             ),
           ),
-           Padding(
-             padding: const EdgeInsets.only(left: 20,right: 20,top: 20),
-             child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ReportPage()));
-                  },
-                  child: Boxone(Colors.orange, 'Report','','')),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ReportPage()));
+                    },
+                    child: Boxone(Colors.orange, 'Report', '', '')),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerDetailsPage()));
-                  },
-                  child: Boxone( Colors.blueGrey, 'Customers Details','','')),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CustomerDetailsPage()));
+                    },
+                    child:
+                        Boxone(Colors.blueGrey, 'Customers Details', '', '')),
               ],
+            ),
           ),
-           ),
-          ],
-          
+        ],
       ),
     );
   }
