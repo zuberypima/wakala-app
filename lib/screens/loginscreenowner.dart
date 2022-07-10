@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Wakala Code',
+                  'Phone No:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
   checkuser(String uid, String _password) {
     FirebaseFirestore.instance
         .collection('Users')
-        .where('Code', isEqualTo: uid)
+        .where('Phone', isEqualTo: uid)
         .where('Password', isEqualTo: _password)
         .get()
         .then((QuerySnapshot snapshots) {

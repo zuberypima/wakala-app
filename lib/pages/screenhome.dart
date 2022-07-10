@@ -18,6 +18,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Stream collectionStream =
       FirebaseFirestore.instance.collection('SMS_DETAILS').snapshots();
+  CollectionReference cashupdate =FirebaseFirestore.instance.collection('CashData');
+
+  String cahsvalue='';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,16 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottom: 20,
                   right: 20,
                   child: InkWell(
-                    onLongPress: () {
-                      cashUpdateTab();
-                    },
-                    child: Boxone(
-                      Colors.blue,
-                      'Cash',
-                      '50%',
-                      'Tsh:350,000',
-                    ),
-                  )),
+                      onLongPress: () {
+                        cashUpdateTab();
+                      },
+                      child: PullData().cashAmount())),
             ],
           ),
 
@@ -91,15 +88,37 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+
             title: Text('Badili Salaio la Cash'),
             content: TextFormField(
+              onChanged: (value) {
+                setState(() {
+                  cahsvalue =value;
+                });
+              },
               decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
-                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
-                      ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
             ),
-            actions: [Text('Update')],
+            actions: [
+              InkWell(
+                onTap: (() {
+                  cashupdate.doc('Cash').update({'Amount':cahsvalue});
+                  Navigator.pop(context);
+                }),
+                child: Container(
+                    height: 30,
+                    width: 70,
+                    decoration: BoxDecoration(color: Colors.green),
+                    child: Center(
+                        child: Text(
+                      'Update',
+                      style: TextStyle(color: Colors.white),
+                    ))),
+              )
+            ],
           );
         });
   }

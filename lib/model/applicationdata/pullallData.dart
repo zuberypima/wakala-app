@@ -11,6 +11,10 @@ class PullData {
       //Float
         CollectionReference _floatCollection =
       FirebaseFirestore.instance.collection('Float_Balance');
+
+      //Cash
+       CollectionReference _cashCollection =
+      FirebaseFirestore.instance.collection('CashData');
 //Cammision
       CollectionReference _cammisionCollection =
       FirebaseFirestore.instance.collection('Cammision');
@@ -27,10 +31,8 @@ class PullData {
   cashAmount() {
     return FutureBuilder<DocumentSnapshot>(
       future: 
-      wakalaCollection
-          .doc('User_id')
-          .collection('SMS_Details')
-          .doc('Float')
+      _cashCollection
+          .doc('Cash')
           .get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -41,9 +43,9 @@ class PullData {
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
           return Boxone(
-              Colors.orange, '${data['Balance']}', '50%', 'Tsh:350,000');
+              Colors.blue, 'Balance', '', 'Tsh:${data['Amount']}');
         }
-        return Boxone(Colors.orange, 'Balance', '50%', 'Tsh:350,000');
+        return Boxone(Colors.blue, 'Balance', '', '');
       },
     );
   }
